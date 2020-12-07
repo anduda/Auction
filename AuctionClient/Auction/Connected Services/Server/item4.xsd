@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AuctionServer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AuctionServer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/MongoDB.Bson" />
+  <xs:complexType name="InvalidLoginException">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:IServerException">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InvalidLoginException" nillable="true" type="tns:InvalidLoginException" />
+  <xs:complexType name="IServerException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IServerException" nillable="true" type="tns:IServerException" />
+  <xs:complexType name="UserIsBlockedException">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:IServerException">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserIsBlockedException" nillable="true" type="tns:UserIsBlockedException" />
+  <xs:complexType name="WrongPasswordException">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:IServerException">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WrongPasswordException" nillable="true" type="tns:WrongPasswordException" />
+  <xs:complexType name="Lot">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MongoDB.Bson" minOccurs="0" name="Id" type="q1:ObjectId" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Owner" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Lot" nillable="true" type="tns:Lot" />
+  <xs:complexType name="ArrayOfLot">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Lot" nillable="true" type="tns:Lot" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLot" nillable="true" type="tns:ArrayOfLot" />
+</xs:schema>

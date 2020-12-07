@@ -1,0 +1,84 @@
+﻿<Window x:Class="Auction.MainMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Auction"
+        mc:Ignorable="d"
+        Title="MainMenu"  >
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="0" Foreground="#4E1609"  HorizontalAlignment="Center" Content="Главное меню" VerticalAlignment="Center" Margin="0,5" FontSize="40" FontFamily="Arial Black" Padding="10, 3"/>
+
+        <Button Command="{Binding OpenProfileWindowCommand}" Grid.Column="0" Grid.Row="2" Background="{x:Null}" FontSize="20" Content="Личный &#xa;кабинет" Margin="2" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}"></Button>
+        <Button Command="{Binding OpenAddAuctionWindowCommand}" Grid.Column="0" Grid.Row="3" Background="{x:Null}" FontSize="20" Content="Создать &#xa;аукцион" Margin="2" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}"></Button>
+        <!--<Button Click="Button_Click" Grid.Column="0" Grid.Row="6" Background="{x:Null}" FontSize="20" Content="Выход" Margin="2" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}"></Button>-->
+
+
+        <Button  Grid.Column="1" Grid.Row="4" Background="{x:Null}" FontSize="20" Content="Показать &#xa;текущие" Margin="2" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}"></Button>
+        <Button  Grid.Column="1" Grid.Row="5" Background="{x:Null}" FontSize="20" Content="Показать &#xa;будущие" Margin="2" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}"></Button>
+        <Button  Command="{Binding OpenAdminWindowCommand}" Grid.Column="0" Grid.Row="5" Background="{x:Null}" FontSize="14" Content="Пользователи" Margin="2" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}"></Button>
+
+        <Label Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="1" Content="Аукционы" Foreground="#4E1609"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Arial"></Label>
+
+        <ListView x:Name="AuctionListView" MouseDoubleClick="AuctionListView_MouseDoubleClick"  Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="2" Grid.RowSpan="4" Background="{x:Null}" FontSize="20" Margin="0" Foreground="#4E1609" FontFamily="Arial" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding Auctions}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Питомец" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Lot.Description}" Background="{x:Null}" FontSize="15" Margin="0" Foreground="#4E1609" FontFamily="Arial"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Цена" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartPrice}" Background="{x:Null}" FontSize="20" Margin="0" Foreground="#4E1609" FontFamily="Arial"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Время начала" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StartTime, StringFormat='{}{0:HH:mm MMMM/dd/yyyy}'}" Background="{x:Null}" FontSize="15" Margin="0" Foreground="#4E1609" FontFamily="Arial" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Время окончания" Width="Auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EndTime, StringFormat='{}{0:HH:mm MMMM/dd/yyyy}'}" Background="{x:Null}" FontSize="15" Margin="0" Foreground="#4E1609" FontFamily="Arial" HorizontalAlignment="Right"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
